@@ -4,42 +4,81 @@ import {Chart as ChartJS} from "chart.js/auto"
 
 
 
-
 function LineChart({chartData,title}){
-    // var ticker_info =
 
-    // const getTile = () =>{
-    //     axios.post('/title',{
-    //       ticker: {ticker},
-    //       option: 1
-    //   })
-    //     .then(function (response) {
-    //       console.log(response);
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    //   }
-      
     let option = {
+        maintainAspectRatio: false,
         scales:{
             x: {
-            
+              
                 ticks:{
-                    maxTicksLimit: 7
+                    maxTicksLimit: 7,
+                    maxRotation: 20,
+               
+ 
+                },
+                title:{
+                    display: true,
+                    text: 'Date',
+                    font: {
+                        size: 20,
+                    },
+                    color: '#000'
+       
+                }
+            },
+
+            y:{
+                title:{
+                    display: true,
+                    text: 'Price',
+                    font: {
+                        size: 20,
+                  
+                    },
+                    color: '#000'
                 }
             }
         },
         plugins: {
             title: {
                 display: true,
-                text:  {title}["title"]
+                text:  {title}["title"],
+                font: {
+                    size: 15,
+              
+                }
+            },
+            legend:{
+                position : 'right',
+                align: 'center',
+                fill : true
             }
-        }
+         
+            
+
+        },
+        tooltips: {
+            intersect: false,
+            mode: "index"
+        },
+        hover: {
+            mode: 'index',
+            intersect: true
+        },
+        interaction: {
+            mode: 'index',
+            axis: 'x',
+            intersect: true
+        },
+        responsiveAnimationDuration: 500,
+        responsive: true
+          
     }
 
 
-    return <Line  data={chartData} options={option} />
+
+    return <Line  data={chartData} options={option}/>
 }
 
 export default LineChart
